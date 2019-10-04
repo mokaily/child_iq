@@ -1,4 +1,4 @@
-package com.example.child_iq;
+package com.fahad.childiq;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

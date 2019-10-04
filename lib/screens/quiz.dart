@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../data/theme.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../data/quizData.dart';
@@ -13,14 +14,57 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   int percentage = 10;
-  var results = [0, 0, 0, 0, 0, 0, 0, 0];
   int startCount = 0;
+  int r0 = 0;
+  int r1 = 0;
+  int r2 = 0;
+  int r3 = 0;
+  int r4 = 0;
+  int r5 = 0;
+  int r6 = 0;
+  int r7 = 0;
+
+  SharedPreferences prefs;
+
+  wait() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCounter();
+    wait();
+  }
+
+//Loading counter value on start
+  _loadCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      percentage = (prefs.getInt('percentage') ?? 10);
+      startCount = (prefs.getInt('startCount') ?? 0);
+      r0 = (prefs.getInt('r0') ?? 0);
+      r1 = (prefs.getInt('r1') ?? 0);
+      r2 = (prefs.getInt('r2') ?? 0);
+      r3 = (prefs.getInt('r3') ?? 0);
+      r4 = (prefs.getInt('r4') ?? 0);
+      r5 = (prefs.getInt('r5') ?? 0);
+      r6 = (prefs.getInt('r6') ?? 0);
+      r7 = (prefs.getInt('r7') ?? 0);
+    });
+  }
+
+  var results;
+
   var x = QuizQ().quizQ;
 
   ScrollController _scrollController = new ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    _loadCounter();
+    wait();
+    results = [r0, r1, r2, r3, r4, r5, r6, r7];
     var colors = [
       StyleCustom().blue,
       StyleCustom().rose,
@@ -64,6 +108,12 @@ class _QuizState extends State<Quiz> {
               progressColor: StyleCustom().mainBlue,
             ),
           ),
+          Container(
+              alignment: Alignment(0, 0),
+              child: Text(
+                "ملاحظة: يمكنك التوقف عند اى صفحة وإكمال التقييم لاحقاً",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal,color: Colors.red),textAlign: TextAlign.center
+              )),
           Expanded(
               child: ListView.builder(
                   controller: _scrollController,
@@ -126,7 +176,7 @@ class _QuizState extends State<Quiz> {
                                         x[index][1] = 100;
                                       }
                                       debugPrint(x[index][1].toString());
-                                      //saveResults(x);
+                                      //saveResults(x, index);
                                     });
                                   })
                             ]))
@@ -152,6 +202,7 @@ class _QuizState extends State<Quiz> {
                       flex: 5,
                       child: GestureDetector(
                           onTap: () {
+                            debugPrint(results.toString());
                             int z = 0;
                             if (percentage == 100) {
                               for (int i = startCount;
@@ -170,6 +221,24 @@ class _QuizState extends State<Quiz> {
                                     i < startCount + 8;
                                     i++) {
                                   results[x[i][2]] += x[i][1];
+                                  if (x[i][2] == 0) {
+                                    prefs.setInt('r0', r0 + x[i][1]);
+                                  } else if (x[i][2] == 1) {
+                                    prefs.setInt('r1', r1 + x[i][1]);
+                                  } else if (x[i][2] == 2) {
+                                    prefs.setInt('r2', r2 + x[i][1]);
+                                  } else if (x[i][2] == 3) {
+                                    prefs.setInt('r3', r3 + x[i][1]);
+                                  } else if (x[i][2] == 4) {
+                                    prefs.setInt('r4', r4 + x[i][1]);
+                                  } else if (x[i][2] == 5) {
+                                    prefs.setInt('r5', r5 + x[i][1]);
+                                  } else if (x[i][2] == 6) {
+                                    prefs.setInt('r6', r6 + x[i][1]);
+                                  } else if (x[i][2] == 7) {
+                                    prefs.setInt('r7', r7 + x[i][1]);
+                                  }
+                                  prefs.setInt('percentage', 110);
                                 }
                                 Navigator.pop(context);
                                 Navigator.push(
@@ -195,6 +264,23 @@ class _QuizState extends State<Quiz> {
                                     i < startCount + 8;
                                     i++) {
                                   results[x[i][2]] += x[i][1];
+                                  if (x[i][2] == 0) {
+                                    prefs.setInt('r0', r0 + x[i][1]);
+                                  } else if (x[i][2] == 1) {
+                                    prefs.setInt('r1', r1 + x[i][1]);
+                                  } else if (x[i][2] == 2) {
+                                    prefs.setInt('r2', r2 + x[i][1]);
+                                  } else if (x[i][2] == 3) {
+                                    prefs.setInt('r3', r3 + x[i][1]);
+                                  } else if (x[i][2] == 4) {
+                                    prefs.setInt('r4', r4 + x[i][1]);
+                                  } else if (x[i][2] == 5) {
+                                    prefs.setInt('r5', r5 + x[i][1]);
+                                  } else if (x[i][2] == 6) {
+                                    prefs.setInt('r6', r6 + x[i][1]);
+                                  } else if (x[i][2] == 7) {
+                                    prefs.setInt('r7', r7 + x[i][1]);
+                                  }
                                 }
                                 //debugPrint(results.toString());
                                 setState(() {
@@ -205,9 +291,12 @@ class _QuizState extends State<Quiz> {
                                   );
                                   percentage += 10;
                                   startCount += 8;
+                                  prefs.setInt('startCount', startCount);
+                                  prefs.setInt('percentage', percentage);
                                 });
                               }
                             }
+                            debugPrint(results.toString());
                           },
                           child: Container(
                               margin: EdgeInsets.only(
@@ -228,6 +317,35 @@ class _QuizState extends State<Quiz> {
                                     )
                                   ]))))
                 ])));
+  }
+
+  saveResults(var questions, int count) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (questions[count][2] == 0 && questions[count][3] == 0) {
+      prefs.setInt('r0', r0 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 1 && questions[count][3] == 0) {
+      prefs.setInt('r1', r1 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 2 && questions[count][3] == 0) {
+      prefs.setInt('r2', r2 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 3 && questions[count][3] == 0) {
+      prefs.setInt('r3', r3 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 4 && questions[count][3] == 0) {
+      prefs.setInt('r4', r4 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 5 && questions[count][3] == 0) {
+      prefs.setInt('r5', r5 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 6 && questions[count][3] == 0) {
+      prefs.setInt('r6', r6 + questions[count][1]);
+      questions[count][3] = 1;
+    } else if (questions[count][2] == 7 && questions[count][3] == 0) {
+      prefs.setInt('r7', r7 + questions[count][1]);
+      questions[count][3] = 1;
+    }
   }
 }
 

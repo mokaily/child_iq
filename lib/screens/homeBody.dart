@@ -79,94 +79,93 @@ void alert(BuildContext context) {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20))),
       content: Container(
-          child: Container(
         height: MediaQuery.of(context).size.height * 0.80,
         child: Column(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  color: StyleCustom().mainBlue,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0))),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.error_outline, color: Colors.white),
-                  Text(" مهم جداً",
-                      style: TextStyle(color: Colors.white, fontSize: 14)),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(4.0),
-                //height: MediaQuery.of(context).size.height * 0.44,
-                color: StyleCustom().bg,
-                child: Scrollbar(
-                  child: Center(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      Text(
-                        "هذا الاختبار العالمي يعطيك نتيجة متقاربة مع شخصية ابنك في حال كانتإجاباتك دقيقة اجعل إجاباتك تصف حاله ابنك الآن وليس ما ينبغي أن تكونعليه وبذلك تصل لنتيجة دقيقة",
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      Divider(
-                        indent: 20.0,
-                        endIndent: 20.0,
-                        height: 5.0,
-                      ),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      Text(
-                        "قرر لكل واحد من السلوكيات التالية الترتيب أو الرقم الذي يعتبرأدق وصف لسلوك طفلك",
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          as("3", "ينطبق و يمارسه دائماً"),
-                          as("2", "يمارس هذا السلوك غالباً"),
-                          as("1", "يمارس هذا السلوك نادراً"),
-                          as("0", "لا ينطبق علي ابنى ابداً"),
-                        ],
-                      )
-                    ],
-                  )),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.popAndPushNamed(context, "/Quiz");
-              },
-              child: Container(
-                child: Text("ابداً الأختبار"),
-                alignment: Alignment(0, 0),
-                padding: EdgeInsets.all(4.0),
-                height: MediaQuery.of(context).size.height * 0.08,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0))),
-              ),
-            )
-          ],
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              color: StyleCustom().mainBlue,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0))),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 0.10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.error_outline, color: Colors.white),
+              Text(" مهم جداً",
+                  style: TextStyle(color: Colors.white, fontSize: 14)),
+            ],
+          ),
         ),
-      )));
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(4.0),
+            //height: MediaQuery.of(context).size.height * 0.44,
+            color: StyleCustom().bg,
+            child: Scrollbar(
+              child: Center(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.all(5.0)),
+                  Text(
+                    "هذا الاختبار العالمي يعطيك نتيجة متقاربة مع شخصية ابنك في حال كانتإجاباتك دقيقة اجعل إجاباتك تصف حاله ابنك الآن وليس ما ينبغي أن تكونعليه وبذلك تصل لنتيجة دقيقة",
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                  Padding(padding: EdgeInsets.all(5.0)),
+                  Divider(
+                    indent: 20.0,
+                    endIndent: 20.0,
+                    height: 5.0,
+                  ),
+                  Padding(padding: EdgeInsets.all(5.0)),
+                  Text(
+                    "قرر لكل واحد من السلوكيات التالية الترتيب أو الرقم الذي يعتبرأدق وصف لسلوك طفلك",
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                  Padding(padding: EdgeInsets.all(5.0)),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      as("3", "ينطبق و يمارسه دائماً"),
+                      as("2", "يمارس هذا السلوك غالباً"),
+                      as("1", "يمارس هذا السلوك نادراً"),
+                      as("0", "لا ينطبق علي ابنى ابداً"),
+                    ],
+                  )
+                ],
+              )),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.popAndPushNamed(context, "/Quiz");
+          },
+          child: Container(
+            child: Text("ابداً الأختبار"),
+            alignment: Alignment(0, 0),
+            padding: EdgeInsets.all(4.0),
+            height: MediaQuery.of(context).size.height * 0.08,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0))),
+          ),
+        )
+      ],
+        ),
+      ));
 
   showDialog(context: context, builder: (BuildContext context) => alertDialog);
 }

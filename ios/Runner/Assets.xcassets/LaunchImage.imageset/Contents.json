@@ -2,18 +2,23 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LaunchImage.png",
+      "filename" : "icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LaunchImage@2x.png",
+      "filename" : "icon.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LaunchImage@3x.png",
+      "filename" : "icon.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "icon.png",
+      "scale" : "4x"
     }
   ],
   "info" : {
